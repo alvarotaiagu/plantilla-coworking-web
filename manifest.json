@@ -1,0 +1,15 @@
+{
+  "name": "O FAIADO · Coworking (demostración)",
+  "short_name": "O FAIADO",
+  "description": "Plantilla de demostración de un coworking ficticio.",
+  "lang": "es",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0C0C10",
+  "theme_color": "#0C0C10",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "assets/og.png", "sizes": "1200x630", "type": "image/png" }
+  ]
+}

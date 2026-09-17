@@ -181,12 +181,22 @@
       });
     });
 
-    /* al abrir, el día y la hora de quien mira (si es fin de semana, el lunes) */
+    /* Al abrir se muestra el día y la hora de quien mira, pero si llega fuera
+       de horario no tiene sentido enseñarle la planta apagada: se le pone el
+       siguiente día laborable a las 11:00, que es la franja que más dice. El
+       marcador del hero sí avisa de que ahora mismo está cerrado. */
     var ahora = new Date();
     var d = ahora.getDay();
-    diaActual = (d === 0) ? 1 : Math.min(d, 6);
-    var h = Math.min(Math.max(ahora.getHours(), 8), 21);
-    rango.value = h;
+    var h = ahora.getHours();
+    var fuera = (d === 0) || h < 8 || h >= 21 || (d === 6 && h >= 14);
+    if (fuera) {
+      var siguiente = (d === 0 || d === 6) ? 1 : (h >= 21 ? d + 1 : d);
+      diaActual = siguiente > 5 ? 1 : siguiente;
+      rango.value = 11;
+    } else {
+      diaActual = Math.min(d, 6);
+      rango.value = h;
+    }
     pintar();
   })();
 
