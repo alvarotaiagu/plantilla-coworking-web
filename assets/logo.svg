@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" width="52" height="52" role="img" aria-label="O FAIADO">
+  <path d="M4 26 L26 6 L48 26" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"/>
+  <path d="M9 26 v20 h34 v-20" fill="none" stroke="currentColor" stroke-width="3.4"/>
+  <rect x="19" y="14" width="14" height="12" rx="2" fill="#9B6BFF"/>
+  <path d="M19 33 h14 M19 40 h14" stroke="currentColor" stroke-width="2.6" opacity=".55"/>
+</svg>

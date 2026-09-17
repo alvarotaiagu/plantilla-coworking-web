@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  SITIO DE DEMOSTRACIÓN. O FAIADO es un coworking FICTICIO.
+  Nombre, dirección, teléfono, horarios, tarifas, aforos y los datos de
+  ocupación son de muestra, inventados para enseñar la plantilla. No
+  corresponden a ningún espacio real. Plantilla reskineable: ver README.md.
+  ============================================================================
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O FAIADO · Coworking en A Coruña (demo)</title>
+<meta name="description" content="Plantilla de demostración de un coworking ficticio: la planta a cada hora, ocupación por franjas, espacios y tarifas de muestra.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0C0C10">
+<meta property="og:type" content="website">
+<meta property="og:title" content="O FAIADO · Coworking (sitio de demostración)">
+<meta property="og:description" content="Negocio ficticio. Plantilla de muestra con la planta hora a hora, espacios y tarifas.">
+<meta property="og:image" content="assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;800&family=Manrope:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "O FAIADO",
+  "description": "Coworking ficticio usado como plantilla de demostración.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rúa da Cerca 19, planta 4",
+    "addressLocality": "A Coruña",
+    "addressRegion": "A Coruña",
+    "postalCode": "15003",
+    "addressCountry": "ES"
+  },
+  "telephone": "+34981000000",
+  "email": "hola@ofaiado.example",
+  "priceRange": "€€",
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "21:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "14:00" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="salto" href="#contenido">Saltar al contenido</a>
+
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-punto"></span><span class="cursor-texto" id="cursor-texto"></span></div>
+
+<header class="cabecera" id="cabecera">
+  <a class="marca" href="#inicio" aria-label="O FAIADO, inicio">
+    <img src="assets/logo.svg" width="52" height="52" alt="" class="marca-mark">
+    <span class="marca-texto">O FAIADO<em>coworking · A Coruña</em></span>
+  </a>
+
+  <nav class="nav" id="nav" aria-label="Principal">
+    <ul class="nav-lista">
+      <li><a href="#planta">La planta</a></li>
+      <li><a href="#semana">La semana</a></li>
+      <li><a href="#espacios">Espacios</a></li>
+      <li><a href="#tarifas">Tarifas</a></li>
+      <li><a href="#normas">Cómo funciona</a></li>
+      <li><a href="#visita">Visita</a></li>
+    </ul>
+    <a class="boton boton--violeta nav-cta" href="#visita" data-iman>Probar un día</a>
+  </nav>
+
+  <button class="hamburguesa" id="hamburguesa" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main id="contenido">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="inicio">
+    <div class="hero-texto">
+      <p class="sobretitulo" data-aparecer>Coworking en la última planta · Rúa da Cerca · A Coruña</p>
+      <h1 class="titular titular--hero" data-revelar>Te decimos a qué hora hay sitio</h1>
+      <p class="parrafo parrafo--grande" data-aparecer>Veinticuatro puestos en un faiado con seis ventanas al
+        tejado. Publicamos la ocupación media de cada franja porque es lo primero que preguntaría cualquiera
+        y lo último que suele contar un coworking.</p>
+      <div class="hero-acciones" data-aparecer>
+        <a class="boton boton--violeta" href="#visita" data-iman>Probar un día gratis</a>
+        <a class="boton boton--linea" href="#planta" data-iman>Ver la planta ahora</a>
+      </div>
+    </div>
+
+    <aside class="ahora" id="ahora" aria-live="polite">
+      <p class="ahora-rotulo">Ahora mismo</p>
+      <p class="ahora-cifra"><span id="ahora-libres">13</span><i>de 24 puestos libres</i></p>
+      <div class="ahora-barra" aria-hidden="true"><span id="ahora-relleno"></span></div>
+      <p class="ahora-texto" id="ahora-texto">Miércoles, 11:20 · hora punta, pero suele quedar sitio en la fila de las ventanas.</p>
+      <p class="ahora-aviso">Dato de muestra calculado con la ocupación media de esta demostración, no con sensores.</p>
+    </aside>
+  </section>
+
+  <!-- ================= FRANJA ================= -->
+  <section class="franja" aria-label="Servicios">
+    <div class="franja-pista" id="franja-pista">
+      <div class="franja-grupo">
+        <span>Puesto flexible</span><i aria-hidden="true"></i><span>Puesto fijo</span><i aria-hidden="true"></i><span>Salas</span><i aria-hidden="true"></i><span>Cabina de llamadas</span><i aria-hidden="true"></i><span>Domiciliación</span><i aria-hidden="true"></i>
+      </div>
+      <div class="franja-grupo" aria-hidden="true">
+        <span>Puesto flexible</span><i></i><span>Puesto fijo</span><i></i><span>Salas</span><i></i><span>Cabina de llamadas</span><i></i><span>Domiciliación</span><i></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LA PLANTA (protagonista) ================= -->
+  <section class="planta" id="planta">
+    <div class="planta-cab">
+      <p class="rotulo"><span>01</span> La planta</p>
+      <h2 class="titular" data-revelar>Mueve la hora y mira dónde queda sitio</h2>
+      <p class="parrafo">Este es el plano real de la planta, con sus veinticuatro puestos, las dos salas y la
+        cabina. Los puestos ocupados son la media de esta demostración para cada franja: sirve para elegir
+        hora, no para reservar una mesa concreta.</p>
+    </div>
+
+    <div class="planta-mando">
+      <div class="mando-dias" role="group" aria-label="Día de la semana">
+        <button type="button" class="dia" data-dia="1">Lun</button>
+        <button type="button" class="dia" data-dia="2">Mar</button>
+        <button type="button" class="dia" data-dia="3">Mié</button>
+        <button type="button" class="dia" data-dia="4">Jue</button>
+        <button type="button" class="dia" data-dia="5">Vie</button>
+        <button type="button" class="dia" data-dia="6">Sáb</button>
+      </div>
+      <div class="mando-hora">
+        <label for="mando-rango">Hora</label>
+        <input type="range" id="mando-rango" min="8" max="21" step="1" value="11">
+        <output class="mando-salida" id="mando-salida">11:00</output>
+      </div>
+      <p class="mando-leyenda" aria-hidden="true">
+        <span class="punto punto--libre"></span> libre
+        <span class="punto punto--ocupado"></span> ocupado
+        <span class="punto punto--cerrado"></span> cerrado
+      </p>
+    </div>
+
+    <div class="planta-lienzo">
+      <svg class="plano" id="plano" viewBox="0 0 1000 560" role="img"
+           aria-label="Plano de la planta: veinticuatro puestos en cuatro islas, dos salas de reunión, cabina de llamadas, cocina y terraza.">
+        <rect x="14" y="14" width="972" height="532" rx="6" fill="#121318" stroke="#2F323A" stroke-width="3"/>
+        <g class="plano-trama" aria-hidden="true">
+          <path d="M14 94h972M14 174h972M14 254h972M14 334h972M14 414h972M14 494h972M94 14v532M174 14v532M254 14v532M334 14v532M414 14v532M494 14v532M574 14v532M654 14v532M734 14v532M814 14v532M894 14v532"
+                stroke="#1A1C22" stroke-width="1"/>
+        </g>
+
+        <!-- ventanas al tejado -->
+        <g class="ventanas" aria-hidden="true">
+          <path d="M60 14 h120 M220 14 h120 M380 14 h120 M540 14 h120 M700 14 h120 M860 14 h80"
+                stroke="#9B6BFF" stroke-width="6" stroke-linecap="round"/>
+        </g>
+        <text x="40" y="44" class="plano-txt">VENTANAS AL TEJADO</text>
+
+        <!-- islas de puestos -->
+        <g class="isla" data-isla="1">
+          <rect x="52" y="86" width="250" height="150" rx="6" fill="#161820" stroke="#3A3E49" stroke-width="2"/>
+          <text x="62" y="110" class="plano-txt">ISLA A · VENTANA</text>
+        </g>
+        <g class="isla" data-isla="2">
+          <rect x="52" y="272" width="250" height="150" rx="6" fill="#161820" stroke="#3A3E49" stroke-width="2"/>
+          <text x="62" y="296" class="plano-txt">ISLA B</text>
+        </g>
+        <g class="isla" data-isla="3">
+          <rect x="346" y="86" width="250" height="150" rx="6" fill="#161820" stroke="#3A3E49" stroke-width="2"/>
+          <text x="356" y="110" class="plano-txt">ISLA C · VENTANA</text>
+        </g>
+        <g class="isla" data-isla="4">
+          <rect x="346" y="272" width="250" height="150" rx="6" fill="#161820" stroke="#3A3E49" stroke-width="2"/>
+          <text x="356" y="296" class="plano-txt">ISLA D · FIJOS</text>
+        </g>
+
+        <g id="puestos">
+          <g class="puesto" data-puesto="1" data-isla="1"><rect x="70" y="124" width="62" height="46" rx="4"/><circle cx="101" cy="147" r="7"/></g>
+          <g class="puesto" data-puesto="2" data-isla="1"><rect x="146" y="124" width="62" height="46" rx="4"/><circle cx="177" cy="147" r="7"/></g>
+          <g class="puesto" data-puesto="3" data-isla="1"><rect x="222" y="124" width="62" height="46" rx="4"/><circle cx="253" cy="147" r="7"/></g>
+          <g class="puesto" data-puesto="4" data-isla="1"><rect x="70" y="182" width="62" height="46" rx="4"/><circle cx="101" cy="205" r="7"/></g>
+          <g class="puesto" data-puesto="5" data-isla="1"><rect x="146" y="182" width="62" height="46" rx="4"/><circle cx="177" cy="205" r="7"/></g>
+          <g class="puesto" data-puesto="6" data-isla="1"><rect x="222" y="182" width="62" height="46" rx="4"/><circle cx="253" cy="205" r="7"/></g>
+          <g class="puesto" data-puesto="7" data-isla="2"><rect x="70" y="310" width="62" height="46" rx="4"/><circle cx="101" cy="333" r="7"/></g>
+          <g class="puesto" data-puesto="8" data-isla="2"><rect x="146" y="310" width="62" height="46" rx="4"/><circle cx="177" cy="333" r="7"/></g>
+          <g class="puesto" data-puesto="9" data-isla="2"><rect x="222" y="310" width="62" height="46" rx="4"/><circle cx="253" cy="333" r="7"/></g>
+          <g class="puesto" data-puesto="10" data-isla="2"><rect x="70" y="368" width="62" height="46" rx="4"/><circle cx="101" cy="391" r="7"/></g>
+          <g class="puesto" data-puesto="11" data-isla="2"><rect x="146" y="368" width="62" height="46" rx="4"/><circle cx="177" cy="391" r="7"/></g>
+          <g class="puesto" data-puesto="12" data-isla="2"><rect x="222" y="368" width="62" height="46" rx="4"/><circle cx="253" cy="391" r="7"/></g>
+          <g class="puesto" data-puesto="13" data-isla="3"><rect x="364" y="124" width="62" height="46" rx="4"/><circle cx="395" cy="147" r="7"/></g>
+          <g class="puesto" data-puesto="14" data-isla="3"><rect x="440" y="124" width="62" height="46" rx="4"/><circle cx="471" cy="147" r="7"/></g>
+          <g class="puesto" data-puesto="15" data-isla="3"><rect x="516" y="124" width="62" height="46" rx="4"/><circle cx="547" cy="147" r="7"/></g>
+          <g class="puesto" data-puesto="16" data-isla="3"><rect x="364" y="182" width="62" height="46" rx="4"/><circle cx="395" cy="205" r="7"/></g>
+          <g class="puesto" data-puesto="17" data-isla="3"><rect x="440" y="182" width="62" height="46" rx="4"/><circle cx="471" cy="205" r="7"/></g>
+          <g class="puesto" data-puesto="18" data-isla="3"><rect x="516" y="182" width="62" height="46" rx="4"/><circle cx="547" cy="205" r="7"/></g>
+          <g class="puesto" data-puesto="19" data-isla="4"><rect x="364" y="310" width="62" height="46" rx="4"/><circle cx="395" cy="333" r="7"/></g>
+          <g class="puesto" data-puesto="20" data-isla="4"><rect x="440" y="310" width="62" height="46" rx="4"/><circle cx="471" cy="333" r="7"/></g>
+          <g class="puesto" data-puesto="21" data-isla="4"><rect x="516" y="310" width="62" height="46" rx="4"/><circle cx="547" cy="333" r="7"/></g>
+          <g class="puesto" data-puesto="22" data-isla="4"><rect x="364" y="368" width="62" height="46" rx="4"/><circle cx="395" cy="391" r="7"/></g>
+          <g class="puesto" data-puesto="23" data-isla="4"><rect x="440" y="368" width="62" height="46" rx="4"/><circle cx="471" cy="391" r="7"/></g>
+          <g class="puesto" data-puesto="24" data-isla="4"><rect x="516" y="368" width="62" height="46" rx="4"/><circle cx="547" cy="391" r="7"/></g>
+        </g>
+
+        <!-- salas y servicios -->
+        <g class="sala" data-sala="grande">
+          <rect x="650" y="86" width="290" height="150" rx="6" fill="#161820" stroke="#3A3E49" stroke-width="2"/>
+          <rect x="700" y="126" width="190" height="70" rx="6" fill="#1B1E27" stroke="#4A4F5C" stroke-width="2"/>
+          <text x="660" y="110" class="plano-txt">SALA GRANDE · 10</text>
+          <circle class="sala-luz" cx="920" cy="104" r="9"/>
+        </g>
+        <g class="sala" data-sala="pequena">
+          <rect x="650" y="272" width="170" height="150" rx="6" fill="#161820" stroke="#3A3E49" stroke-width="2"/>
+          <rect x="682" y="322" width="106" height="60" rx="6" fill="#1B1E27" stroke="#4A4F5C" stroke-width="2"/>
+          <text x="660" y="296" class="plano-txt">SALA · 4</text>
+          <circle class="sala-luz" cx="800" cy="290" r="9"/>
+        </g>
+        <g class="sala" data-sala="cabina">
+          <rect x="852" y="272" width="88" height="150" rx="6" fill="#161820" stroke="#3A3E49" stroke-width="2"/>
+          <text x="862" y="296" class="plano-txt">CABINA</text>
+          <circle class="sala-luz" cx="920" cy="290" r="9"/>
+        </g>
+
+        <g class="servicio" aria-hidden="true">
+          <rect x="52" y="458" width="250" height="72" rx="6" fill="#14161C" stroke="#2F323A" stroke-width="2"/>
+          <text x="62" y="484" class="plano-txt">COCINA Y CAFÉ</text>
+          <rect x="346" y="458" width="250" height="72" rx="6" fill="#14161C" stroke="#2F323A" stroke-width="2"/>
+          <text x="356" y="484" class="plano-txt">TERRAZA</text>
+          <rect x="650" y="458" width="290" height="72" rx="6" fill="#14161C" stroke="#2F323A" stroke-width="2"/>
+          <text x="660" y="484" class="plano-txt">ENTRADA · TAQUILLAS · IMPRESORA</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="planta-estado" id="planta-estado" role="status">Miércoles a las 11:00 · 11 de 24 puestos ocupados</p>
+  </section>
+
+  <!-- ================= LA SEMANA ================= -->
+  <section class="semana" id="semana">
+    <div class="semana-cab">
+      <p class="rotulo"><span>02</span> La semana</p>
+      <h2 class="titular" data-revelar>Cuándo está lleno y cuándo está vacío</h2>
+      <p class="parrafo">La misma ocupación media, vista de golpe. Cuanto más claro el cuadro, más sitio hay.
+        Los martes y miércoles por la mañana son el pico; los viernes por la tarde esto parece una
+        biblioteca.</p>
+    </div>
+    <div class="mapa-calor" id="mapa-calor"></div>
+    <p class="semana-nota">Datos de muestra de una web de demostración. En un coworking real saldrían del
+      control de accesos y habría que decirlo.</p>
+  </section>
+
+  <!-- ================= ESPACIOS ================= -->
+  <section class="espacios" id="espacios">
+    <div class="espacios-cab">
+      <p class="rotulo"><span>03</span> Espacios</p>
+      <h2 class="titular" data-revelar>Qué hay en la planta</h2>
+    </div>
+    <ul class="rejilla-espacios">
+      <li class="espacio">
+        <p class="espacio-num">24</p>
+        <h3>Puestos</h3>
+        <p>Mesa de 140 cm, silla de oficina de verdad, monitor de 24" en las islas A y C, y regleta propia.
+          Dieciséis son flexibles y ocho, fijos con cajonera.</p>
+      </li>
+      <li class="espacio">
+        <p class="espacio-num">2</p>
+        <h3>Salas de reunión</h3>
+        <p>Una de diez plazas con pantalla y otra de cuatro. Se reservan por horas desde el panel de la
+          entrada; dos horas al mes van incluidas en el bono mensual.</p>
+      </li>
+      <li class="espacio">
+        <p class="espacio-num">1</p>
+        <h3>Cabina de llamadas</h3>
+        <p>Insonorizada, para videollamadas largas. No se reserva: se entra y se cierra. Es la norma que más
+          se agradece de toda la casa.</p>
+      </li>
+      <li class="espacio">
+        <p class="espacio-num">6</p>
+        <h3>Ventanas al tejado</h3>
+        <p>Es un faiado: la luz entra por arriba. En verano hay estores y ventilación cruzada; en invierno,
+          suelo radiante y mantas en el armario.</p>
+      </li>
+    </ul>
+
+    <dl class="cifras" id="cifras">
+      <div><dt>metros útiles</dt><dd><span class="contador" data-hasta="310">310</span></dd></div>
+      <div><dt>puestos</dt><dd><span class="contador" data-hasta="24">24</span></dd></div>
+      <div><dt>megas simétricos</dt><dd><span class="contador" data-hasta="600">600</span></dd></div>
+      <div><dt>personas en la lista</dt><dd><span class="contador" data-hasta="41">41</span></dd></div>
+    </dl>
+  </section>
+
+  <!-- ================= TARIFAS ================= -->
+  <section class="tarifas" id="tarifas">
+    <div class="tarifas-cab">
+      <p class="rotulo"><span>04</span> Tarifas</p>
+      <h2 class="titular" data-revelar>Precios de muestra, sin permanencia</h2>
+      <p class="parrafo">Importes inventados para esta demostración. Todos incluyen luz, wifi, café, agua,
+        impresora y taquilla; ninguno incluye domiciliación fiscal, que va aparte.</p>
+    </div>
+
+    <ul class="planes">
+      <li class="plan">
+        <p class="plan-nombre">Día suelto</p>
+        <p class="plan-precio"><span>14</span><i>€ al día</i></p>
+        <ul>
+          <li>Puesto flexible, de 08:00 a 21:00</li>
+          <li>Sin reserva: si hay hueco, hay sitio</li>
+          <li>El primer día es gratis</li>
+        </ul>
+      </li>
+      <li class="plan plan--destacado">
+        <p class="plan-etiqueta">La más usada</p>
+        <p class="plan-nombre">Bono 10 días</p>
+        <p class="plan-precio"><span>110</span><i>€ · 10 días</i></p>
+        <ul>
+          <li>Días sueltos, sin caducidad</li>
+          <li>Una hora de sala incluida</li>
+          <li>Se comparte con quien quieras</li>
+        </ul>
+      </li>
+      <li class="plan">
+        <p class="plan-nombre">Flexible</p>
+        <p class="plan-precio"><span>145</span><i>€ al mes</i></p>
+        <ul>
+          <li>Puesto libre todos los días</li>
+          <li>Dos horas de sala al mes</li>
+          <li>Llave 24/7 a partir del segundo mes</li>
+        </ul>
+      </li>
+      <li class="plan">
+        <p class="plan-nombre">Fijo</p>
+        <p class="plan-precio"><span>195</span><i>€ al mes</i></p>
+        <ul>
+          <li>Tu mesa, tu cajonera, tu monitor</li>
+          <li>Cuatro horas de sala al mes</li>
+          <li>Llave 24/7 desde el primer día</li>
+        </ul>
+      </li>
+    </ul>
+    <p class="nota">Precios ficticios, IVA no incluido. Domiciliación fiscal, 35 € al mes. Sala para quien no
+      es socio: 18 € la hora la grande, 9 € la pequeña.</p>
+  </section>
+
+  <!-- ================= CÓMO FUNCIONA ================= -->
+  <section class="normas" id="normas">
+    <div class="normas-cab">
+      <p class="rotulo"><span>05</span> Cómo funciona</p>
+      <h2 class="titular" data-revelar>Cuatro normas y ninguna más</h2>
+      <p class="parrafo">Un coworking se estropea por el ruido y por las tazas sin fregar, no por falta de
+        reglamento. Estas cuatro están en la pared de la entrada.</p>
+    </div>
+    <ol class="lista-normas">
+      <li><p class="norma-num">01</p><h3>Las llamadas, en la cabina</h3><p>Una llamada corta en la mesa se aguanta; una videollamada de media hora, no. Para eso está la cabina y por eso no se reserva.</p></li>
+      <li><p class="norma-num">02</p><h3>La sala se libera a la hora</h3><p>Si acabas antes, se marca como libre en el panel. Si te pasas diez minutos, no pasa nada; si te pasas media hora, sí.</p></li>
+      <li><p class="norma-num">03</p><h3>Tu taza, tu problema</h3><p>Hay lavavajillas. No hay nadie contratado para recogerte la mesa, y no lo va a haber.</p></li>
+      <li><p class="norma-num">04</p><h3>Invitados, avisando</h3><p>Puedes traer a alguien un rato sin coste. Si viene todos los días, ya no es un invitado: es un compañero y tiene su bono.</p></li>
+    </ol>
+
+    <div class="acceso">
+      <h3>Horario y acceso</h3>
+      <p>Oficina atendida de lunes a viernes de 08:00 a 21:00 y sábados de 10:00 a 14:00. Con llave 24/7
+        puedes entrar fuera de ese horario, pero entonces no hay nadie: ni recepción, ni café hecho, ni
+        quien te abra si te dejas la llave dentro.</p>
+    </div>
+  </section>
+
+  <!-- ================= COMUNIDAD ================= -->
+  <section class="comunidad" id="comunidad">
+    <div class="comunidad-cab">
+      <p class="rotulo"><span>06</span> Quién trabaja aquí</p>
+      <h2 class="titular" data-revelar>Cuarenta y una personas, ningún logotipo</h2>
+      <p class="parrafo">No publicamos la lista de empresas ni sus marcas: ni las reales, porque no nos
+        corresponde, ni inventadas, porque parecerían reales. Esto es lo que hay, contado por oficios.</p>
+    </div>
+    <ul class="oficios">
+      <li><p class="oficio-num">11</p><p>personas de desarrollo y datos</p></li>
+      <li><p class="oficio-num">8</p><p>diseño, ilustración y audiovisual</p></li>
+      <li><p class="oficio-num">7</p><p>traducción, redacción y edición</p></li>
+      <li><p class="oficio-num">6</p><p>consultoría y gestión</p></li>
+      <li><p class="oficio-num">5</p><p>arquitectura e ingeniería</p></li>
+      <li><p class="oficio-num">4</p><p>comercio en línea y logística</p></li>
+    </ul>
+    <p class="comunidad-nota">Reparto de muestra, inventado para esta demostración.</p>
+  </section>
+
+  <!-- ================= PREGUNTAS ================= -->
+  <section class="preguntas" id="preguntas">
+    <div class="preguntas-cab">
+      <p class="rotulo"><span>07</span> Preguntas</p>
+      <h2 class="titular" data-revelar>Lo que se pregunta en la visita</h2>
+    </div>
+    <div class="acordeon">
+      <details><summary>¿Puedo ir un día a probar?</summary>
+        <p>Sí, el primer día es gratis y no hay que dejar tarjeta ni firmar nada. Escríbenos y te decimos
+          qué día hay más sitio, que para eso publicamos la ocupación.</p></details>
+      <details><summary>¿Hay que reservar puesto?</summary>
+        <p>No. Los puestos flexibles son por orden de llegada; los fijos tienen nombre. Solo se reservan las
+          salas y eso se hace desde el panel de la entrada o por teléfono.</p></details>
+      <details><summary>¿Qué pasa con el ruido?</summary>
+        <p>Es la norma uno. Las llamadas largas van a la cabina y las reuniones a la sala. La planta tiene
+          moqueta y paneles en el techo, pero eso no arregla una videollamada a voces.</p></details>
+      <details><summary>¿Puedo domiciliar mi empresa?</summary>
+        <p>Sí, con el bono mensual y un contrato aparte de 35 € al mes. Recibimos correo y paquetería y te
+          avisamos el mismo día.</p></details>
+      <details><summary>¿Es accesible?</summary>
+        <p>El edificio tiene ascensor hasta la planta y aseo adaptado. Dentro no hay escalones, pero el
+          acceso a la terraza tiene un peldaño de 12 cm: lo decimos porque es lo que nos gustaría que nos
+          dijeran.</p></details>
+      <details><summary>¿Se puede dejar material?</summary>
+        <p>Con taquilla, sí, y los fijos tienen cajonera. Material grande o de obra, no: no somos un
+          almacén.</p></details>
+    </div>
+  </section>
+
+  <!-- ================= VISITA ================= -->
+  <section class="visita" id="visita">
+    <div class="visita-cab">
+      <p class="rotulo"><span>08</span> Visita</p>
+      <h2 class="titular" data-revelar>Sube a verlo</h2>
+      <p class="parrafo">Enseñamos la planta en diez minutos y te dejamos trabajar el resto del día. Si
+        prefieres venir cuando haya poca gente, mira antes el cuadro de la semana.</p>
+    </div>
+
+    <div class="visita-rejilla">
+      <form class="formulario" id="formulario" novalidate>
+        <p class="formulario-aviso">Formulario de muestra: no envía nada a ningún servidor.</p>
+        <div class="campo-fila">
+          <div class="campo">
+            <label for="f-nombre">Nombre</label>
+            <input id="f-nombre" name="nombre" type="text" autocomplete="name" required>
+          </div>
+          <div class="campo">
+            <label for="f-correo">Correo</label>
+            <input id="f-correo" name="correo" type="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="campo-fila">
+          <div class="campo">
+            <label for="f-plan">Qué te encaja</label>
+            <select id="f-plan" name="plan">
+              <option>Probar un día</option>
+              <option>Bono de 10 días</option>
+              <option>Flexible mensual</option>
+              <option>Puesto fijo</option>
+              <option>Solo sala de reunión</option>
+              <option>Domiciliación</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="f-franja">Cuándo sueles trabajar</label>
+            <select id="f-franja" name="franja">
+              <option>Mañanas</option>
+              <option>Tardes</option>
+              <option>Jornada completa</option>
+              <option>A ratos, sin horario</option>
+            </select>
+          </div>
+        </div>
+        <div class="campo">
+          <label for="f-mensaje">Algo que debamos saber</label>
+          <textarea id="f-mensaje" name="mensaje" rows="4"></textarea>
+        </div>
+        <label class="campo-check"><input type="checkbox" id="f-ok" name="ok" required> He leído el <a href="aviso-legal.html">aviso legal</a>.</label>
+        <button class="boton boton--violeta" type="submit" data-iman>Pedir visita</button>
+        <p class="formulario-respuesta" id="formulario-respuesta" role="status"></p>
+      </form>
+
+      <div class="visita-datos">
+        <dl>
+          <div><dt>Dónde</dt><dd>Rúa da Cerca 19, planta 4<br>15003 A Coruña</dd></div>
+          <div><dt>Teléfono</dt><dd><a href="tel:+34981000000">981 00 00 00</a><br><span class="muestra">Número de muestra: no funciona.</span></dd></div>
+          <div><dt>Correo</dt><dd><a href="mailto:hola@ofaiado.example">hola@ofaiado.example</a></dd></div>
+          <div><dt>Oficina atendida</dt><dd>Lunes a viernes 08:00 – 21:00<br>Sábado 10:00 – 14:00</dd></div>
+          <div><dt>Con llave</dt><dd>24 horas, todos los días</dd></div>
+        </dl>
+
+        <div class="mapa" id="mapa">
+          <button class="boton boton--linea" type="button" id="mapa-boton" data-iman>Cargar el mapa de Google</button>
+          <p class="mapa-nota">El mapa no se carga hasta que lo pides: así esta página no pone cookies de
+            terceros por su cuenta. La dirección es inventada, así que el mapa muestra la ciudad, no un
+            portal concreto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="pie-rejilla">
+    <div class="pie-marca">
+      <img src="assets/logo.svg" width="52" height="52" alt="">
+      <p>O FAIADO<br><span>Coworking · A Coruña</span></p>
+    </div>
+    <div>
+      <h2>Dónde</h2>
+      <p>Rúa da Cerca 19, planta 4<br>15003 A Coruña</p>
+    </div>
+    <div>
+      <h2>Contacto</h2>
+      <p><a href="tel:+34981000000">981 00 00 00</a><br><a href="mailto:hola@ofaiado.example">hola@ofaiado.example</a></p>
+    </div>
+    <div>
+      <h2>Horario</h2>
+      <p>L–V 08:00 – 21:00<br>S 10:00 – 14:00<br>Con llave, 24/7</p>
+    </div>
+    <div>
+      <h2>Legal</h2>
+      <p><a href="aviso-legal.html">Aviso legal y privacidad</a><br><a href="#inicio">Volver arriba</a></p>
+    </div>
+  </div>
+  <p class="sello">Sitio de demostración. O FAIADO es un negocio ficticio; los datos, el plano, las tarifas y
+    especialmente las cifras de ocupación son de muestra y no corresponden a ningún coworking real.</p>
+</footer>
+
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+  <p>Esta web solo guarda en tu navegador que ya has visto este aviso. No hay cookies de terceros ni
+    analítica, y el mapa de Google se carga únicamente si pulsas su botón.</p>
+  <div class="cookie-acciones">
+    <button class="boton boton--violeta" type="button" id="cookie-ok">De acuerdo</button>
+    <a class="cookie-mas" href="aviso-legal.html">Más información</a>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
