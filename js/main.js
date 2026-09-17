@@ -282,6 +282,27 @@
     caja.appendChild(pie);
   })();
 
+
+  /* --- Contenedores con scroll accesibles por teclado ----------------------
+     axe: `scrollable-region-focusable`. Un contenedor que se recorre con el
+     dedo tiene que poder recorrerse también con las flechas, así que se hace
+     focusable; pero solo cuando de verdad desborda, porque en escritorio no
+     desborda y una parada de tabulación de más solo estorba. */
+  (function scrollAccesible() {
+    var cajas = $$("[data-scroll-teclado]");
+    if (!cajas.length) { return; }
+    function revisar() {
+      cajas.forEach(function (c) {
+        var desborda = (c.scrollWidth > c.clientWidth + 4) || (c.scrollHeight > c.clientHeight + 4);
+        if (desborda) { c.setAttribute("tabindex", "0"); }
+        else { c.removeAttribute("tabindex"); }
+      });
+    }
+    revisar();
+    window.addEventListener("resize", revisar);
+    window.addEventListener("load", revisar);
+  })();
+
   /* ======================================================================
      2. MOVIMIENTO
      ====================================================================== */
