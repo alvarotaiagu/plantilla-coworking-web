@@ -465,11 +465,61 @@
     ScrollTrigger.refresh();
   }
 
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(arrancar);
-  } else {
-    window.addEventListener("load", arrancar);
+
+  /* --- Cortina de entrada ---------------------------------------------------
+     El gesto sale del concepto; la mecánica es la misma en toda la biblioteca.
+     Se retira SIEMPRE: sin GSAP y con movimiento reducido la hoja de estilos ni
+     la pinta, y aquí abajo hay una red de seguridad por tiempo. */
+  var elCortina = $("#cortina");
+  var cortinaFuera = false;
+
+  function quitarCortina() {
+    if (cortinaFuera) { return; }
+    cortinaFuera = true;
+    if (elCortina) { elCortina.classList.add("esta-fuera"); }
+    if (lenis) { lenis.start(); }
   }
+
+  function cortina(alHero) {
+    if (!elCortina) { alHero(); return; }
+    if (lenis) { lenis.stop(); }
+    try { window.scrollTo(0, 0); } catch (e) {}
+    var salida = $("#cortina-cuenta");
+    var ocupados = { n: 0 };
+    var tl = gsap.timeline({ onComplete: quitarCortina });
+    tl.to(".cortina-puesto", {
+        backgroundColor: "#9B6BFF", borderColor: "#9B6BFF",
+        duration: .22, ease: "none", stagger: .028
+      })
+      .to(ocupados, {
+        n: 24, duration: .9, ease: "none",
+        onUpdate: function () {
+          if (salida) { salida.textContent = Math.round(ocupados.n) + " de 24 puestos"; }
+        }
+      }, "<")
+      .to(".cortina-marca", { opacity: 1, duration: .45, ease: "power2.out" }, "-=.35")
+      .add(alHero, "+=.12")
+      .to(".cortina-centro", { opacity: 0, duration: .32, ease: "power2.in" })
+      .to(".cortina-col", {
+        yPercent: -102, borderRadius: 0, duration: 1.05, ease: "expo.inOut",
+        stagger: { each: .06, from: "center" }
+      }, "-=.14");
+  }
+
+  var yaArranco = false;
+  function arrancarUnaVez() { if (yaArranco) { return; } yaArranco = true; arrancar(); }
+  function abrirLaPagina() { cortina(arrancarUnaVez); }
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(abrirLaPagina);
+  } else {
+    window.addEventListener("load", abrirLaPagina);
+  }
+
+  /* Red de seguridad: si las tipografías no resuelven, si una animación se
+     atasca o si algo revienta a mitad, ni la cortina se queda puesta ni el
+     arranque se pierde. */
+  setTimeout(function () { quitarCortina(); arrancarUnaVez(); }, 4600);
 
   if (mqReducido.addEventListener) {
     mqReducido.addEventListener("change", function () { window.location.reload(); });

@@ -453,3 +453,32 @@ html.has-motion .calor-celda{opacity:0;transform:scale(.7);}
   html.has-motion .calor-celda{opacity:1;transform:none;}
   .cursor{display:none !important;}
 }
+
+
+/* ====================== cortina de entrada ================================
+   Obligatoria en todas las plantillas de la biblioteca. Se pinta SOLO cuando
+   hay movimiento: sin GSAP o con `prefers-reduced-motion` la regla de abajo la
+   borra del documento, así que la página no puede quedarse tapada. Además,
+   main.js tiene una red de seguridad por tiempo que la retira pase lo que pase.
+   ========================================================================== */
+.cortina{position:fixed;inset:0;z-index:400;overflow:hidden;}
+.cortina-centro{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px;}
+.cortina.esta-fuera{display:none;}
+html:not(.has-motion) .cortina{display:none;}
+@media (prefers-reduced-motion:reduce){.cortina{display:none;}}
+
+/* El gesto del coworking: los veinticuatro puestos se van ocupando y luego el
+   local se vacía por columnas, que se recogen hacia arriba con el canto
+   curvado y salen desde el centro. */
+.cortina-plano{position:absolute;inset:0;display:grid;grid-template-columns:repeat(6,1fr);}
+.cortina-col{background:var(--panel);border-right:1px solid var(--linea);
+  border-radius:0 0 36px 36px;will-change:transform;}
+.cortina-rejilla{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;
+  width:min(72vw,248px);}
+.cortina-puesto{display:block;aspect-ratio:1;background:var(--panel2);
+  border:1px solid var(--linea);}
+.cortina-cuenta{font-family:var(--texto);font-weight:600;font-size:.72rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--violeta);margin:0;}
+.cortina-marca{font-family:var(--display);font-size:clamp(1.6rem,6vw,2.4rem);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--hueso);margin:0;opacity:0;}

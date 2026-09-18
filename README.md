@@ -124,3 +124,20 @@ botón del mapa, el formulario y el mando de hora y día del plano.
 
 Plantilla de muestra propiedad de su autor. El contenido es ficticio y no puede
 presentarse como un negocio real.
+
+---
+
+## La cortina de entrada
+
+Obligatoria en toda la biblioteca, y **el gesto sale del concepto de esta
+plantilla**, no es la misma cortina repintada: aquí los **veinticuatro puestos se van ocupando** uno a uno mientras el contador sube, y después el local se vacía: las columnas se recogen hacia arriba desde el centro.
+
+La mecánica es la de siempre: línea de tiempo encadenada, `expo.inOut`, borde
+curvo y **entrega limpia al hero** —el revelado del titular arranca mientras la
+cortina todavía se está yendo, no después—.
+
+**Se retira siempre.** Sin GSAP y con `prefers-reduced-motion` la hoja de estilos
+ni la pinta (`html:not(.has-motion) .cortina{display:none}`), y con movimiento hay
+una red de seguridad por tiempo en `main.js` que la quita y lanza el arranque
+pase lo que pase, para que la página no pueda quedarse tapada si una animación se
+atasca o las tipografías no resuelven.
